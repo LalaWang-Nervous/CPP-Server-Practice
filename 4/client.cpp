@@ -29,26 +29,24 @@ int main(int argc, char* argv[]) {
     }
 
     // 3.send server data
-    while(true) {
-        cout << "please input the message to send:" << endl;
-        string sendbuf;
-        cin >> sendbuf;
-        int ret = send(clientfd, sendbuf.c_str(), strlen(sendbuf.c_str()), 0);
-        if(ret != strlen(sendbuf.c_str())) {
-            cout << "send data fail." << endl;
-            return -1;
-        }
+    cout << "please input the message to send:" << endl;
+    string sendbuf;
+    cin >> sendbuf;
+    int ret = send(clientfd, sendbuf.c_str(), strlen(sendbuf.c_str()), 0);
+    if(ret != strlen(sendbuf.c_str())) {
+        cout << "send data fail." << endl;
+        return -1;
+    }
 
-        cout << "send data successfully, data:" << sendbuf << endl;
+    cout << "send data successfully, data:" << sendbuf << endl;
 
-        // 4.receive data from server
-        char recvbuf[32] = {0};
-        ret = recv(clientfd, recvbuf, 32, 0);
-        if(ret > 0) {
-            cout << "receive data successfully, data:" << recvbuf << endl;
-        } else {
-            cout << "receive data error." << recvbuf << endl;
-        }
+    // 4.receive data from server
+    char recvbuf[32] = {0};
+    ret = recv(clientfd, recvbuf, 32, 0);
+    if(ret > 0) {
+        cout << "receive data successfully, data:" << recvbuf << endl;
+    } else {
+        cout << "receive data error." << recvbuf << endl;
     }
     
     // 5.close socket
