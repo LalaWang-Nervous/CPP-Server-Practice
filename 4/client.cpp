@@ -23,6 +23,19 @@ int main(int argc, char* argv[]) {
     serveraddr.sin_family = AF_INET;
     serveraddr.sin_addr.s_addr = inet_addr(SERVER_ADDRESS);
     serveraddr.sin_port = htons(SERVER_PORT);
+    /*
+      SYNOPSIS: int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+      The connect() system call connects 
+      the socket referred to by the file descriptor sockfd 
+      to 
+      the address specified by addr.  
+      The addrlen argument specifies the size of addr. The format of the address in addr is determined by 
+      the address space of the socket sockfd;
+      connect()将由scokfd指定的套接字和由addr指定的地址去连接起来
+      If the connection or binding succeeds, zero is returned.  
+      On error, -1 is returned, and errno is set appropriately.
+     */
     if(connect(clientfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) == -1) {
         cout << "connect socket fail." << endl;
         return -1;
